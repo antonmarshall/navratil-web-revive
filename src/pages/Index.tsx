@@ -1,5 +1,6 @@
 
 import { Suspense, lazy } from 'react';
+import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import WelcomeSection from '../components/WelcomeSection';
 import ServicesSection from '../components/ServicesSection';
@@ -9,21 +10,30 @@ import ContactSection from '../components/ContactSection';
 import PracticeGallery from '../components/PracticeGallery';
 import MethodsSection from '../components/MethodsSection';
 import MapSection from '../components/MapSection';
+import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <HeroSection />
-      <WelcomeSection />
-      <ServicesSection />
-      <TreatmentSpectrum />
-      <MethodsSection />
-      <Timeline />
-      <PracticeGallery />
-      <MapSection />
-      <ContactSection />
-      <Footer />
+      <Navigation />
+      <div className="pt-16"> {/* Add top padding for fixed navigation */}
+        <HeroSection />
+        <WelcomeSection />
+        <ServicesSection />
+        <TreatmentSpectrum />
+        <MethodsSection />
+        <Timeline />
+        <div id="galerie">
+          <PracticeGallery />
+        </div>
+        <MapSection />
+        <div id="faq">
+          <FAQSection />
+        </div>
+        <ContactSection />
+        <Footer />
+      </div>
     </div>
   );
 };
