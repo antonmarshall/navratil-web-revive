@@ -49,32 +49,32 @@ const Timeline = () => {
   ];
 
   return (
-    <section id="timeline" className="py-16 bg-gradient-to-b from-orange-50 to-yellow-50">
+    <section id="timeline" className="py-12 bg-gradient-to-b from-orange-50 to-yellow-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <div className="inline-block p-4 bg-yellow-100 rounded-full mb-6">
-            <Users className="w-8 h-8 text-yellow-600" />
+        <div className="text-center mb-8">
+          <div className="inline-block p-3 bg-yellow-100 rounded-full mb-4">
+            <Users className="w-6 h-6 text-yellow-600" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-2xl font-bold text-gray-800 mb-3">
             Zu meiner Person
           </h2>
-          <h3 className="text-xl text-rose-600 mb-4">
+          <h3 className="text-lg text-rose-600 mb-4">
             Dipl.-Psych. Christiane Navratil
           </h3>
         </div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-3">
             {timelineData.map((item, index) => (
-              <Card key={index} className="w-48 bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0">
-                <CardContent className="p-4 text-center">
-                  <div className={`mx-auto mb-3 p-3 ${item.color} text-white rounded-full w-fit`}>
-                    <item.icon className="w-5 h-5" />
+              <Card key={index} className="w-40 bg-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-0">
+                <CardContent className="p-3 text-center">
+                  <div className={`mx-auto mb-2 p-2 ${item.color} text-white rounded-full w-fit`}>
+                    <item.icon className="w-4 h-4" />
                   </div>
-                  <div className="text-sm font-bold text-white bg-gradient-to-r from-rose-400 to-orange-400 px-2 py-1 rounded-full mb-2">
+                  <div className="text-xs font-bold text-white bg-gradient-to-r from-rose-400 to-orange-400 px-2 py-1 rounded-full mb-2">
                     {item.year}
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-800 mb-2">
+                  <h3 className="text-sm font-semibold text-gray-800 mb-1">
                     {item.title}
                   </h3>
                   <p className="text-xs text-gray-600 leading-relaxed">
@@ -86,13 +86,13 @@ const Timeline = () => {
           </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <Card className="max-w-2xl mx-auto bg-gradient-to-r from-rose-50 to-orange-50 border-0 shadow-lg">
-            <CardContent className="p-6">
-              <h4 className="text-lg font-semibold text-gray-800 mb-4">
+        <div className="mt-8 text-center">
+          <Card className="max-w-xl mx-auto bg-gradient-to-r from-rose-50 to-orange-50 border-0 shadow-md">
+            <CardContent className="p-4">
+              <h4 className="text-md font-semibold text-gray-800 mb-3">
                 Qualifikationen
               </h4>
-              <div className="text-sm text-gray-600 space-y-1">
+              <div className="text-xs text-gray-600 space-y-1">
                 <p>• Dipl.-Psychologin • Kinder- und Jugendlichen-Psychotherapeutin</p>
                 <p>• Klinische Neuropsychologin • Heilpraktiker (Psychotherapie)</p>
                 <p>• Montessori-Pädagogin • Krankenschwester</p>

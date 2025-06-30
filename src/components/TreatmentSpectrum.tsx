@@ -74,42 +74,42 @@ const TreatmentSpectrum = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-12 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">
             Behandlungs-Spektrum
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Nach störungsspezifischer Diagnostik werden folgende Störungsbilder behandelt:
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {treatmentAreas.map((area, index) => (
             <Collapsible key={index}>
-              <Card className="hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white border-0 shadow-md">
+              <Card className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 bg-white border-0 shadow-sm">
                 <CollapsibleTrigger className="w-full">
-                  <CardHeader className="text-left">
+                  <CardHeader className="text-left pb-3">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className={`p-3 rounded-full ${area.color}`}>
-                          <area.icon className="w-6 h-6" />
+                      <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-full ${area.color}`}>
+                          <area.icon className="w-5 h-5" />
                         </div>
-                        <CardTitle className="text-lg text-gray-800">
+                        <CardTitle className="text-md text-gray-800">
                           {area.title}
                         </CardTitle>
                       </div>
-                      <ChevronDown className="w-5 h-5 text-gray-400 transition-transform duration-200" />
+                      <ChevronDown className="w-4 h-4 text-gray-400 transition-transform duration-200" />
                     </div>
                   </CardHeader>
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <CardContent className="pt-0">
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {area.items.map((item, itemIndex) => (
                         <li key={itemIndex} className="text-gray-600 text-sm leading-relaxed flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-1 h-1 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
                           {item}
                         </li>
                       ))}
@@ -121,8 +121,8 @@ const TreatmentSpectrum = () => {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <p className="text-gray-600 max-w-2xl mx-auto">
+        <div className="mt-8 text-center">
+          <p className="text-gray-600 max-w-xl mx-auto text-sm">
             Zusätzlich behandle ich: Bindungs-Störungen, Ausscheidungs-Störungen, 
             Entwicklungs-Störungen schulischer Fertigkeiten, Hochsensibilität, 
             hirnorganische Verletzungen, Regulations-Störungen bei kleinen Kindern, 
