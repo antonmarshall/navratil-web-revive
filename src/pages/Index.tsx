@@ -8,6 +8,7 @@ import Timeline from '../components/Timeline';
 import ContactSection from '../components/ContactSection';
 import PracticeGallery from '../components/PracticeGallery';
 import MethodsSection from '../components/MethodsSection';
+import MapSection from '../components/MapSection';
 import Footer from '../components/Footer';
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
       <MethodsSection />
       <Timeline />
       <PracticeGallery />
+      <MapSection />
       <ContactSection />
       <Footer />
     </div>
