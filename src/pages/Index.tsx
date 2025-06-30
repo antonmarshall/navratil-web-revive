@@ -1,12 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Suspense, lazy } from 'react';
+import HeroSection from '../components/HeroSection';
+import WelcomeSection from '../components/WelcomeSection';
+import ServicesSection from '../components/ServicesSection';
+import TreatmentSpectrum from '../components/TreatmentSpectrum';
+import Timeline from '../components/Timeline';
+import ContactSection from '../components/ContactSection';
+import PracticeGallery from '../components/PracticeGallery';
+import MethodsSection from '../components/MethodsSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-green-50">
+      <HeroSection />
+      <WelcomeSection />
+      <ServicesSection />
+      <TreatmentSpectrum />
+      <MethodsSection />
+      <Timeline />
+      <PracticeGallery />
+      <ContactSection />
     </div>
   );
 };
