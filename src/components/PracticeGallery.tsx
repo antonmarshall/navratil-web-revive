@@ -1,68 +1,93 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Camera } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Camera, MapPin } from "lucide-react";
 
 const PracticeGallery = () => {
-  // Placeholder für Praxis-Bilder
   const galleryImages = [
     {
       id: 1,
       title: "Wartezimmer",
-      description: "Gemütlicher Wartebereich für Familien"
+      description: "Gemütlicher Wartebereich für Familien",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 2,
       title: "Therapieraum",
-      description: "Ruhiger Raum für Gespräche"
+      description: "Ruhiger Raum für Gespräche",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 3,
       title: "Spielbereich",
-      description: "Bereich für Kinder-Therapie"
+      description: "Bereich für Kinder-Therapie",
+      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 4,
       title: "Praxis-Eingang",
-      description: "Eingangsbereich der Praxis"
+      description: "Eingangsbereich der Praxis",
+      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-20 bg-gradient-to-b from-orange-50 to-rose-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
+          <div className="inline-block p-4 bg-orange-100 rounded-full mb-6">
+            <Camera className="w-8 h-8 text-orange-600" />
+          </div>
           <h2 className="text-4xl font-bold text-gray-800 mb-6">
             Praxis-Rundgang
           </h2>
           <p className="text-xl text-gray-600">
-            Werfen Sie einen Blick in unsere Räumlichkeiten
+            Werfen Sie einen Blick in unsere einladenden Räumlichkeiten
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {galleryImages.map((image, index) => (
-            <Card key={image.id} className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white border-0 shadow-lg overflow-hidden">
-              <div className="aspect-square bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
-                <Camera className="w-12 h-12 text-gray-400" />
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                  {image.title}
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  {image.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="max-w-4xl mx-auto">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {galleryImages.map((image) => (
+                <CarouselItem key={image.id} className="md:basis-1/2 lg:basis-1/3">
+                  <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0">
+                    <div className="aspect-square overflow-hidden">
+                      <img 
+                        src={image.image} 
+                        alt={image.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      />
+                    </div>
+                    <CardContent className="p-6 bg-gradient-to-r from-orange-50 to-rose-50">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                        {image.title}
+                      </h3>
+                      <p className="text-gray-600">
+                        {image.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="bg-white/90 hover:bg-white text-orange-600 border-orange-200" />
+            <CarouselNext className="bg-white/90 hover:bg-white text-orange-600 border-orange-200" />
+          </Carousel>
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Die Praxis befindet sich in der Hüffer-Straße 22 in Münster und bietet eine ruhige, 
-            professionelle Atmosphäre für alle Altersgruppen. Hier finden Sie Raum für Gespräche, 
-            Spiel und Therapie in angenehmer Umgebung.
-          </p>
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <MapPin className="w-5 h-5 text-rose-500" />
+              <h3 className="text-lg font-semibold text-gray-800">Standort</h3>
+            </div>
+            <p className="text-gray-600">
+              Die Praxis befindet sich in der Hüffer-Straße 22 in Münster und bietet eine ruhige, 
+              professionelle Atmosphäre für alle Altersgruppen. Hier finden Sie Raum für Gespräche, 
+              Spiel und Therapie in angenehmer Umgebung.
+            </p>
+          </div>
         </div>
       </div>
     </section>
