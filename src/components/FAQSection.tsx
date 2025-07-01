@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -30,10 +29,10 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-yellow-50">
+    <section className="py-16 bg-accent">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl font-bold text-primary mb-4">
             Häufig gestellte Fragen
           </h2>
           <p className="text-lg text-gray-600">
@@ -49,7 +48,7 @@ const FAQSection = () => {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <CardTitle className="flex justify-between items-center text-left">
-                  <span className="text-gray-800">{faq.question}</span>
+                  <span className="text-primary">{faq.question}</span>
                   <ChevronDown 
                     className={`w-5 h-5 text-rose-500 transition-transform ${
                       openIndex === index ? 'rotate-180' : ''
@@ -59,7 +58,7 @@ const FAQSection = () => {
               </CardHeader>
               {openIndex === index && (
                 <CardContent className="pt-0">
-                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                  <p className="text-primary leading-relaxed">{faq.answer}</p>
                 </CardContent>
               )}
             </Card>

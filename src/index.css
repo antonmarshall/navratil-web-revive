@@ -100,6 +100,10 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#fff8ed] text-[#222222];
+  }
+
+  a {
+    @apply text-link hover:text-link-hover transition-colors;
   }
 }

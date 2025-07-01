@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Smile, Ear, Heart, Lightbulb, Users, ArrowRight } from "lucide-react";
 

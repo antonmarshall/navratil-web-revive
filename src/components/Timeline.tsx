@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Briefcase, Award, Users, Heart } from "lucide-react";
 

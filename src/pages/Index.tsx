@@ -1,4 +1,3 @@
-
 import { Suspense, lazy } from 'react';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
@@ -12,6 +11,7 @@ import MethodsSection from '../components/MethodsSection';
 import MapSection from '../components/MapSection';
 import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
+import TreatmentConceptSection from "../components/TreatmentConceptSection";
 
 const Index = () => {
   return (
@@ -21,6 +21,7 @@ const Index = () => {
         <HeroSection />
         <WelcomeSection />
         <ServicesSection />
+        <TreatmentConceptSection />
         <TreatmentSpectrum />
         <MethodsSection />
         <Timeline />

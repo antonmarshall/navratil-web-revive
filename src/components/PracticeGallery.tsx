@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Camera, MapPin } from "lucide-react";
@@ -77,17 +76,7 @@ const PracticeGallery = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-rose-500" />
-              <h3 className="text-lg font-semibold text-gray-800">Standort</h3>
-            </div>
-            <p className="text-gray-600">
-              Die Praxis befindet sich in der Hüffer-Straße 22 in Münster und bietet eine ruhige, 
-              professionelle Atmosphäre für alle Altersgruppen. Hier finden Sie Raum für Gespräche, 
-              Spiel und Therapie in angenehmer Umgebung.
-            </p>
-          </div>
+          
         </div>
       </div>
     </section>

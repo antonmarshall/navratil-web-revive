@@ -1,9 +1,8 @@
-
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-accent text-[#222222] py-8">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-6">
           {/* Praxis Info */}

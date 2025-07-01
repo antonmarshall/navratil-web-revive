@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, MessageCircle, Stethoscope, RefreshCw, Baby, GraduationCap, User, Users } from "lucide-react";
 
@@ -94,12 +93,12 @@ const ServicesSection = () => {
             
             <div className="flex justify-between items-end relative z-10 pt-8 pb-4">
               {[
-                { icon: Baby, label: "Klein-\nkinder", color: "bg-pink-400", size: "w-16 h-16", age: "0-3" },
-                { icon: Users, label: "Vorschul-\nkinder", color: "bg-purple-400", size: "w-20 h-20", age: "3-6" },
-                { icon: GraduationCap, label: "Grundschul-\nkinder", color: "bg-blue-400", size: "w-24 h-24", age: "6-12" },
-                { icon: User, label: "Jugend-\nliche", color: "bg-green-400", size: "w-28 h-28", age: "12-18" },
-                { icon: Users, label: "Junge\nErwachsene", color: "bg-yellow-400", size: "w-32 h-32", age: "18-30" },
-                { icon: User, label: "Erwach-\nsene", color: "bg-orange-400", size: "w-28 h-28", age: "30+" }
+                { icon: Baby, label: "Kleinkinder", color: "bg-pink-400", size: "w-24 h-24" },
+                { icon: Users, label: "Vorschulkinder", color: "bg-purple-400", size: "w-24 h-24" },
+                { icon: GraduationCap, label: "Grundschulkinder", color: "bg-blue-400", size: "w-24 h-24" },
+                { icon: User, label: "Jugendliche", color: "bg-green-400", size: "w-24 h-24" },
+                { icon: Users, label: "Eltern", color: "bg-yellow-400", size: "w-24 h-24" },
+                { icon: User, label: "Erwachsene", color: "bg-orange-400", size: "w-24 h-24" }
               ].map((group, index) => (
                 <div key={index} className="text-center flex flex-col items-center group cursor-pointer">
                   <div className={`${group.color} ${group.size} rounded-full flex items-center justify-center mb-3 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-4 border-white`}>
@@ -109,9 +108,6 @@ const ServicesSection = () => {
                     <h4 className="text-sm font-bold text-gray-800 whitespace-pre-line leading-tight mb-1">
                       {group.label}
                     </h4>
-                    <p className="text-xs text-gray-600 font-medium">
-                      {group.age} Jahre
-                    </p>
                   </div>
                 </div>
               ))}
