@@ -1,13 +1,43 @@
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Brain, Users, Heart, Activity, Book, Palette } from "lucide-react";
+import { Heart, Users, Brain, Leaf, Sun, Sparkles, BookOpen } from "lucide-react";
 
 const MethodsSection = () => {
   const methodCategories = [
     {
+      icon: Heart,
+      title: "Emotionale Heilung",
+      bgColor: "bg-primary-light",
+      borderColor: "border-primary",
+      iconColor: "text-primary",
+      bulletColor: "bg-primary",
+      methods: [
+        "Entspannungs-Verfahren für innere Ruhe",
+        "Achtsamkeits-Training für mehr Präsenz",
+        "EMDR für Trauma-Verarbeitung",
+        "Körper-Therapie für ganzheitliche Heilung"
+      ]
+    },
+    {
+      icon: Users,
+      title: "Beziehungen & Familie",
+      bgColor: "bg-accent2-light",
+      borderColor: "border-accent2",
+      iconColor: "text-accent2",
+      bulletColor: "bg-accent2",
+      methods: [
+        "Training sozialer Kompetenzen",
+        "Rollenspiele für neue Perspektiven",
+        "Coaching für Eltern, Erzieher, Lehrer",
+        "Familien-Genogramm und Skulptur"
+      ]
+    },
+    {
       icon: Brain,
-      title: "Kognitive Methoden",
-      color: "bg-blue-100 text-blue-600",
+      title: "Kognitive Entwicklung",
+      bgColor: "bg-secondary-light",
+      borderColor: "border-secondary",
+      iconColor: "text-secondary",
+      bulletColor: "bg-secondary",
       methods: [
         "Kognitive Umstrukturierung",
         "PC-gestütztes kognitives Training",
@@ -16,31 +46,12 @@ const MethodsSection = () => {
       ]
     },
     {
-      icon: Users,
-      title: "Soziale Kompetenzen",
-      color: "bg-green-100 text-green-600", 
-      methods: [
-        "Training sozialer Kompetenzen",
-        "Rollenspiele",
-        "Coaching für Eltern, Erzieher, Lehrer",
-        "Familien-Genogramm und Skulptur"
-      ]
-    },
-    {
-      icon: Heart,
-      title: "Emotionsregulation",
-      color: "bg-pink-100 text-pink-600",
-      methods: [
-        "Entspannungs-Verfahren",
-        "Achtsamkeits-Training",
-        "EMDR",
-        "Elemente der Körper-Therapie"
-      ]
-    },
-    {
-      icon: Activity,
+      icon: Sun,
       title: "Verhaltenstherapie",
-      color: "bg-orange-100 text-orange-600",
+      bgColor: "bg-accent-light",
+      borderColor: "border-accent",
+      iconColor: "text-accent",
+      bulletColor: "bg-accent",
       methods: [
         "Expositions-Behandlung",
         "Stress- und Belastungs-Management",
@@ -49,9 +60,12 @@ const MethodsSection = () => {
       ]
     },
     {
-      icon: Book,
-      title: "Narrative Methoden",
-      color: "bg-purple-100 text-purple-600",
+      icon: BookOpen,
+      title: "Narrative Heilung",
+      bgColor: "bg-primary-light",
+      borderColor: "border-primary-dark",
+      iconColor: "text-primary-dark",
+      bulletColor: "bg-primary-dark",
       methods: [
         "Arbeit mit Metaphern und Geschichten",
         "Lösungsorientierte Therapie",
@@ -60,9 +74,12 @@ const MethodsSection = () => {
       ]
     },
     {
-      icon: Palette,
-      title: "Kreative Ansätze",
-      color: "bg-indigo-100 text-indigo-600",
+      icon: Sparkles,
+      title: "Kreative Wege",
+      bgColor: "bg-secondary-light",
+      borderColor: "border-secondary-dark",
+      iconColor: "text-secondary-dark",
+      bulletColor: "bg-secondary-dark",
       methods: [
         "Elemente der Kunst-Therapie",
         "Sport und Ernährung",
@@ -73,47 +90,52 @@ const MethodsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="methods" className="py-20 bg-[#fff8ed]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">
-            Behandlungs-Methoden
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+            Wie ich mit Ihnen arbeite
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-            Je nach Störungsbild sowie abhängig vom Alter des Klienten und der Bereitschaft der Bezugspersonen 
-            arbeite ich mit verschiedenen wissenschaftlich fundierten Methoden:
+                      <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Jeder Mensch ist einzigartig. Deshalb passe ich meine Methoden individuell an Ihr Alter, 
+            Ihre Situation und Ihre Bereitschaft an. Hier sind die Wege, die wir gemeinsam gehen können:
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {methodCategories.map((category, index) => (
-            <Card 
+            <div 
               key={index}
-              className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 bg-white border-0 shadow-lg"
+              className={`group bg-white rounded-3xl p-8 shadow-lg border-2 ${category.borderColor} hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}
             >
-              <CardContent className="p-8">
-                <div className="text-center mb-6">
-                  <div className={`mx-auto mb-4 p-4 rounded-full w-fit ${category.color} group-hover:scale-110 transition-transform duration-300`}>
-                    <category.icon className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800">
-                    {category.title}
-                  </h3>
+              <div className="text-center mb-8">
+                <div className={`mx-auto mb-6 p-4 rounded-full w-fit ${category.bgColor} shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                  <category.icon className={`w-8 h-8 ${category.iconColor}`} />
                 </div>
-                
-                <ul className="space-y-3">
-                  {category.methods.map((method, methodIndex) => (
-                    <li key={methodIndex} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-600 text-sm leading-relaxed">
-                        {method}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                  {category.title}
+                </h3>
+              </div>
+              
+              <div className="space-y-4">
+                {category.methods.map((method, methodIndex) => (
+                  <div key={methodIndex} className="flex items-start gap-4">
+                    <div className={`w-3 h-3 rounded-full mt-2 flex-shrink-0 ${category.bulletColor}`}></div>
+                    <p className="text-gray-700 text-base leading-relaxed">
+                      {method}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           ))}
+        </div>
+
+        <div className="text-center mt-16">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Diese Methoden sind wissenschaftlich fundiert und werden kontinuierlich an Ihre Fortschritte angepasst. 
+            Gemeinsam finden wir den Weg, der für Sie am besten funktioniert.
+          </p>
         </div>
       </div>
     </section>

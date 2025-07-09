@@ -73,7 +73,7 @@ const ContactSection = () => {
                   
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
                         <p className="text-gray-800 font-medium">Hüffer-Str. 22</p>
                         <p className="text-gray-600">48149 Münster</p>
@@ -81,21 +81,21 @@ const ContactSection = () => {
                     </div>
                     
                     <div className="flex items-center gap-3">
-                      <Phone className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                      <Phone className="w-5 h-5 text-primary flex-shrink-0" />
                       <a href="tel:+4917696346095" className="text-gray-800 hover:text-blue-600 transition-colors">
                         (0176) 96 34 60 95
                       </a>
                     </div>
                     
                     <div className="flex items-center gap-3">
-                      <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                      <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                       <a href="mailto:christianenavratil@web.de" className="text-gray-800 hover:text-blue-600 transition-colors">
                         christianenavratil@web.de
                       </a>
                     </div>
                     
                     <div className="flex items-start gap-3">
-                      <Clock className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
                         <p className="text-gray-800 font-medium">Telefonische Sprechzeiten:</p>
                         <p className="text-gray-600">Montags von 9 bis 12 Uhr</p>
@@ -140,66 +140,64 @@ const ContactSection = () => {
           </div>
 
           {/* Kontakt-Formular */}
-          <Card className="bg-white shadow-lg border-0">
-            <CardHeader>
-              <CardTitle className="text-xl text-gray-800">
-                Nachricht senden
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    type="text"
-                    placeholder="Ihr Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    required
-                    className="border-gray-300 focus:border-blue-500"
-                  />
-                </div>
-                
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="Ihre E-Mail"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    required
-                    className="border-gray-300 focus:border-blue-500"
-                  />
-                </div>
-                
-                <div>
-                  <Input
-                    type="tel"
-                    placeholder="Ihre Telefonnummer (optional)"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="border-gray-300 focus:border-blue-500"
-                  />
-                </div>
-                
-                <div>
-                  <Textarea
-                    placeholder="Ihre Nachricht"
-                    rows={5}
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    required
-                    className="border-gray-300 focus:border-blue-500 resize-none"
-                  />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors duration-300"
-                >
+          <div className="h-full flex flex-col">
+            <Card className="bg-white shadow-lg border-0 h-full flex flex-col">
+              <CardHeader>
+                <CardTitle className="text-xl text-gray-800">
                   Nachricht senden
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex-1 flex flex-col justify-between">
+                <form onSubmit={handleSubmit} className="space-y-6 flex flex-col h-full">
+                  <div>
+                    <Input
+                      type="text"
+                      placeholder="Ihr Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required
+                      className="border-gray-300 focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      type="email"
+                      placeholder="Ihre E-Mail"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      required
+                      className="border-gray-300 focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      type="tel"
+                      placeholder="Ihre Telefonnummer (optional)"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      className="border-gray-300 focus:border-blue-500"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <Textarea
+                      placeholder="Ihre Nachricht"
+                      rows={5}
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      required
+                      className="border-gray-300 focus:border-blue-500 resize-none h-full min-h-[120px]"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors duration-300 mt-auto"
+                  >
+                    Nachricht senden
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

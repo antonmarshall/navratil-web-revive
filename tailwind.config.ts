@@ -22,14 +22,18 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				background: '#fff8ed',
-				foreground: 'hsl(var(--foreground))',
+				background: '#fff8ed', // Creme
+				foreground: '#222222', // Dunkel
 				primary: {
-					DEFAULT: '#f6a81a',
+					DEFAULT: '#F6A81A', // Kräftiges Gelb
+					dark: '#F6C544', // Dunkleres Goldgelb
+					light: '#F9E79F', // Helles Gelb
 					foreground: '#222222',
 				},
 				secondary: {
-					DEFAULT: '#e4572e',
+					DEFAULT: '#E4572E', // Orange-Rot
+					dark: '#C13D1A',
+					light: '#F28C28',
 					foreground: '#fff8ed',
 				},
 				destructive: {
@@ -41,8 +45,16 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#fbe7b2',
-					foreground: '#222222',
+					DEFAULT: '#7B4F6A', // Violett
+					dark: '#4B3B5A',
+					light: '#BFA2C5',
+					foreground: '#fff8ed',
+				},
+				accent2: {
+					DEFAULT: '#4A6A7B', // Blaugrün
+					dark: '#3B5A5A',
+					light: '#7BA6B6',
+					foreground: '#fff8ed',
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -58,8 +70,8 @@ export default {
 					foreground: '#fff8ed',
 				},
 				link: {
-					DEFAULT: '#e4572e',
-					hover: '#c13d1a',
+					DEFAULT: '#E4572E',
+					hover: '#C13D1A',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

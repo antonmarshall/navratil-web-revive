@@ -41,7 +41,11 @@ const ServicesSection = () => {
             Praxis-Angebot
           </h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+<<<<<<< Updated upstream
             In der Praxis besteht folgendes psychotherapeutisches Angebot
+=======
+            Hier finden Sie meine Schwerpunkte und Leistungen:
+>>>>>>> Stashed changes
           </p>
         </div>
 

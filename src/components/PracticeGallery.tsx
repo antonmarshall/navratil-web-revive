@@ -8,39 +8,41 @@ const PracticeGallery = () => {
       id: 1,
       title: "Wartezimmer",
       description: "Gemütlicher Wartebereich für Familien",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "/wartezimmer.png"
     },
     {
       id: 2,
       title: "Therapieraum",
-      description: "Ruhiger Raum für Gespräche",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      description: "Ruhiger Raum für Gespräche und Therapie",
+      image: "/therapieraum.png"
     },
     {
       id: 3,
-      title: "Spielbereich",
-      description: "Bereich für Kinder-Therapie",
-      image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      title: "Eingangsbereich",
+      description: "Willkommener Empfangsbereich der Praxis",
+      image: "/eingangsbreich.png"
     },
     {
       id: 4,
-      title: "Praxis-Eingang",
-      description: "Eingangsbereich der Praxis",
-      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      title: "Praxis von außen",
+      description: "Die Praxis in der Hüffer-Straße 22 in Münster",
+      image: "/praxis_von_außen.png"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-orange-50 to-rose-50">
+    <section id="galerie" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-block p-4 bg-orange-100 rounded-full mb-6">
-            <Camera className="w-8 h-8 text-orange-600" />
+          <div className="flex justify-center mb-2">
+            <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary-light">
+              <Camera className="w-6 h-6 text-primary" />
+            </span>
           </div>
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
             Praxis-Rundgang
           </h2>
-          <p className="text-xl text-gray-600">
+                      <p className="text-lg text-gray-600">
             Werfen Sie einen Blick in unsere einladenden Räumlichkeiten
           </p>
         </div>
@@ -58,11 +60,13 @@ const PracticeGallery = () => {
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                       />
                     </div>
-                    <CardContent className="p-6 bg-gradient-to-r from-orange-50 to-rose-50">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    <CardContent
+                      className="p-6 bg-primary-light border border-white/60 shadow-2xl"
+                    >
+                      <h3 className="text-xl font-semibold text-gray-800 mb-2 relative z-10">
                         {image.title}
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 relative z-10">
                         {image.description}
                       </p>
                     </CardContent>
@@ -70,9 +74,16 @@ const PracticeGallery = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="bg-white/90 hover:bg-white text-orange-600 border-orange-200" />
-            <CarouselNext className="bg-white/90 hover:bg-white text-orange-600 border-orange-200" />
+            <CarouselPrevious className="bg-white/90 hover:bg-white text-primary border-primary-light w-10 h-10 md:w-14 md:h-14" />
+            <CarouselNext className="bg-white/90 hover:bg-white text-primary border-primary-light w-10 h-10 md:w-14 md:h-14" />
           </Carousel>
+          {/* Swipe-Hinweis */}
+          <div className="flex justify-center mt-4 md:hidden select-none">
+            <span className="flex items-center gap-2 text-primary text-sm bg-primary-light rounded-full px-4 py-1 shadow-sm">
+              <svg xmlns='http://www.w3.org/2000/svg' className='w-5 h-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 12H3m0 0l4-4m-4 4l4 4' /></svg>
+              Zum Durchwischen ziehen
+            </span>
+          </div>
         </div>
 
         <div className="mt-12 text-center">
