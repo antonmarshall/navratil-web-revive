@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 
 const MapSection = () => {
   return (
-    <section className="py-16 bg-gradient-to-b from-blue-100 to-purple-100">
+    <section id="standort" className="py-20 bg-[#fff8ed]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-8">
           <div className="inline-block p-3 bg-blue-200 rounded-full mb-4">

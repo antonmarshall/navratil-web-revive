@@ -2,12 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const NAV_LINKS = [
-  { label: "Über mich", sections: ["about-me"] },
-  { label: "Behandlungsangebot", sections: ["angebot", "behandlungskonzept", "behandlungsspektrum", "methods"] },
-  { label: "Praxis", sections: ["galerie", "map"] },
-  { label: "FAQ", sections: ["faq"] },
-];
+import { NAV_LINKS, ANIMATION_DURATION, SCROLLSPY_TOP, MENU_HEIGHT } from '@/utils/constants';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +13,7 @@ const Navigation = () => {
   const practiceRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   // Sliding-Box State und Ref
-  const [highlightBoxStyle, setHighlightBoxStyle] = useState<{ left: number; top: number; width: number; height: number; opacity: number }>({ left: 0, top: 0, width: 0, height: 0, opacity: 0 });
+  const [highlightBoxStyle, setHighlightBoxStyle] = useState<{ left: number; top: number; width: number; height: number; opacity: number; scale: number }>({ left: 0, top: 0, width: 0, height: 0, opacity: 0, scale: 1 });
   const [activeIdx, setActiveIdx] = useState<number>(0);
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
   const linkRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -30,15 +25,9 @@ const Navigation = () => {
   const [contactHovered, setContactHovered] = useState(false);
   // Verzögerter Index für Schriftfarbe
   const [delayedBoxIdx, setDelayedBoxIdx] = useState(activeIdx);
-  const ANIMATION_DURATION = 180; // ms, sollte zur CSS-Transition passen
   // State für Initial-Load der Highlight-Box
   const [boxReady, setBoxReady] = useState(false);
   const [boxInitial, setBoxInitial] = useState(true);
-
-  // Scrollspy-Grenze (10% vom Viewport oben)
-  const SCROLLSPY_TOP = 0.1;
-  // Höhe der Navigation (Offset für Scrollspy)
-  const MENU_HEIGHT = 64; // px, ggf. anpassen
 
   // Click-Outside-Handler für Dropdowns
   useEffect(() => {
@@ -58,9 +47,37 @@ const Navigation = () => {
         setPracticeDropdownOpen(false);
       }
     }
+
+    function handleScroll() {
+      // Schließe Dropdowns beim Scrollen
+      if (treatmentDropdownOpen) {
+        setTreatmentDropdownOpen(false);
+      }
+      if (practiceDropdownOpen) {
+        setPracticeDropdownOpen(false);
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      // Schließe Dropdowns mit Escape-Taste
+      if (event.key === 'Escape') {
+        if (treatmentDropdownOpen) {
+          setTreatmentDropdownOpen(false);
+        }
+        if (practiceDropdownOpen) {
+          setPracticeDropdownOpen(false);
+        }
+      }
+    }
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("keydown", handleKeyDown);
+    
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [treatmentDropdownOpen, practiceDropdownOpen]);
 
@@ -77,12 +94,17 @@ const Navigation = () => {
     if (el && navRef.current) {
       const navRect = navRef.current.getBoundingClientRect();
       const elRect = el.getBoundingClientRect();
-      setHighlightBoxStyle({
-        left: elRect.left - navRect.left - 8,
-        top: elRect.top - navRect.top - 4,
-        width: elRect.width + 16,
-        height: elRect.height + 8,
-        opacity: 1,
+      
+      // Verwende requestAnimationFrame für flüssigere Animationen
+      requestAnimationFrame(() => {
+        setHighlightBoxStyle({
+          left: elRect.left - navRect.left - 8,
+          top: elRect.top - navRect.top - 4,
+          width: elRect.width + 16,
+          height: elRect.height + 8,
+          opacity: 1,
+          scale: 1,
+        });
       });
     } else {
       setHighlightBoxStyle((s) => ({ ...s, opacity: 0 }));
@@ -129,6 +151,11 @@ const Navigation = () => {
           if (foundIdx !== -1 && foundIdx !== lastActive) {
             setActiveIdx(foundIdx);
             lastActive = foundIdx;
+            // Subtile Skalierung beim Scrollen
+            setHighlightBoxStyle(prev => ({ ...prev, scale: 1.03 }));
+            setTimeout(() => {
+              setHighlightBoxStyle(prev => ({ ...prev, scale: 1 }));
+            }, 300);
           }
           ticking = false;
         });
@@ -147,7 +174,8 @@ const Navigation = () => {
   useEffect(() => {
     if (!boxReady && highlightBoxStyle.width > 0 && highlightBoxStyle.height > 0) {
       setBoxReady(true);
-      setTimeout(() => setBoxInitial(false), 0); // Nach dem ersten Render Animation aktivieren
+      // Sofort Animation aktivieren für smooth Verhalten
+      setBoxInitial(false);
     }
   }, [highlightBoxStyle.width, highlightBoxStyle.height, boxReady]);
 
@@ -178,6 +206,8 @@ const Navigation = () => {
       hoverTimeout.current = null;
     }
     setHoverIdx(idx);
+    // Subtile Skalierung beim Hover
+    setHighlightBoxStyle(prev => ({ ...prev, scale: 1.05 }));
   };
   const handleMouseLeave = (idx: number) => {
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
@@ -185,18 +215,24 @@ const Navigation = () => {
       // Box bleibt, wenn Dropdown offen ist
       if (dropdownOpenIdx !== idx) {
         setHoverIdx(null);
+        // Skalierung zurücksetzen
+        setHighlightBoxStyle(prev => ({ ...prev, scale: 1 }));
       }
-    }, 120);
+    }, 80); // Reduziert von 120ms auf 80ms für schnellere Reaktion
   };
 
   // Dropdown-Open-Handling
   const openDropdown = (idx: number) => {
     setDropdownOpenIdx(idx);
     setHoverIdx(idx);
+    // Subtile Skalierung beim Dropdown-Öffnen
+    setHighlightBoxStyle(prev => ({ ...prev, scale: 1.02 }));
   };
   const closeDropdown = () => {
     setDropdownOpenIdx(null);
     setHoverIdx(null);
+    // Skalierung zurücksetzen
+    setHighlightBoxStyle(prev => ({ ...prev, scale: 1 }));
   };
 
   // Hilfsfunktion: Gibt true zurück, wenn der Kasten auf diesem Index ist
@@ -234,8 +270,7 @@ const Navigation = () => {
             {/* Sliding Highlight Box */}
             <div
               className={
-                "absolute bg-accent2/90 rounded-xl shadow-lg z-0" +
-                (boxInitial ? "" : " transition-all duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]")
+                "absolute bg-accent2/90 rounded-xl shadow-lg z-0"
               }
               style={{
                 left: highlightBoxStyle.left,
@@ -243,15 +278,23 @@ const Navigation = () => {
                 width: highlightBoxStyle.width,
                 height: highlightBoxStyle.height,
                 opacity: boxReady ? highlightBoxStyle.opacity : 0,
-                transform: 'scale(1)',
+                transform: `scale(${highlightBoxStyle.scale})`,
                 pointerEvents: 'none',
+                transition: `
+                  left 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  top 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.15s ease-out,
+                  transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)
+                `,
               }}
               aria-hidden="true"
             />
             {/* Navigation Links */}
             <button
               ref={el => linkRefs.current[0] = el}
-              onClick={() => { scrollToSection('about-me'); setActiveIdx(0); }}
+              onClick={() => { scrollToSection('person'); setActiveIdx(0); }}
               onMouseEnter={() => handleMouseEnter(0)}
               onMouseLeave={() => handleMouseLeave(0)}
               onFocus={() => handleMouseEnter(0)}
@@ -299,7 +342,7 @@ const Navigation = () => {
                   <button onClick={() => { scrollToSection('behandlungsspektrum'); setActiveIdx(1); setTreatmentDropdownOpen(false); }} className="w-full text-left px-4 py-2 text-gray-800 hover:bg-accent2/10 hover:text-accent2 transition-colors text-base font-medium rounded-xl">
                     Spektrum
                   </button>
-                  <button onClick={() => { scrollToSection('methods'); setActiveIdx(1); setTreatmentDropdownOpen(false); }} className="w-full text-left px-4 py-2 text-gray-800 hover:bg-accent2/10 hover:text-accent2 transition-colors text-base font-medium rounded-xl">
+                  <button onClick={() => { scrollToSection('methoden'); setActiveIdx(1); setTreatmentDropdownOpen(false); }} className="w-full text-left px-4 py-2 text-gray-800 hover:bg-accent2/10 hover:text-accent2 transition-colors text-base font-medium rounded-xl">
                     Methoden
                   </button>
                 </div>
@@ -337,7 +380,7 @@ const Navigation = () => {
                   <button onClick={() => { scrollToSection('galerie'); setActiveIdx(2); setPracticeDropdownOpen(false); }} className="w-full text-left px-4 py-2 text-gray-800 hover:bg-accent2/10 hover:text-accent2 transition-colors text-base font-medium rounded-xl">
                     Galerie
                   </button>
-                  <button onClick={() => { scrollToSection('map'); setActiveIdx(2); setPracticeDropdownOpen(false); }} className="w-full text-left px-4 py-2 text-gray-800 hover:bg-accent2/10 hover:text-accent2 transition-colors text-base font-medium rounded-xl">
+                  <button onClick={() => { scrollToSection('standort'); setActiveIdx(2); setPracticeDropdownOpen(false); }} className="w-full text-left px-4 py-2 text-gray-800 hover:bg-accent2/10 hover:text-accent2 transition-colors text-base font-medium rounded-xl">
                     Anfahrt
                   </button>
                 </div>
@@ -378,7 +421,7 @@ const Navigation = () => {
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="py-6 px-6 shadow-lg animate-fade-in flex flex-col gap-4">
-            <button onClick={() => scrollToSection('about-me')} className="text-left text-gray-800 hover:text-yellow-700 text-lg font-medium px-2 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
+            <button onClick={() => scrollToSection('person')} className="text-left text-gray-800 hover:text-yellow-700 text-lg font-medium px-2 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
               Über mich
             </button>
             
@@ -395,7 +438,7 @@ const Navigation = () => {
                 <button onClick={() => scrollToSection('behandlungsspektrum')} className="text-left text-gray-700 hover:text-yellow-700 text-base font-medium px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
                   Spektrum
                 </button>
-                <button onClick={() => scrollToSection('methods')} className="text-left text-gray-700 hover:text-yellow-700 text-base font-medium px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
+                <button onClick={() => scrollToSection('methoden')} className="text-left text-gray-700 hover:text-yellow-700 text-base font-medium px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
                   Methoden
                 </button>
               </div>
@@ -408,7 +451,7 @@ const Navigation = () => {
                 <button onClick={() => scrollToSection('galerie')} className="text-left text-gray-700 hover:text-yellow-700 text-base font-medium px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
                   Galerie
                 </button>
-                <button onClick={() => scrollToSection('map')} className="text-left text-gray-700 hover:text-yellow-700 text-base font-medium px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
+                <button onClick={() => scrollToSection('standort')} className="text-left text-gray-700 hover:text-yellow-700 text-base font-medium px-2 py-1 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 transition-colors">
                   Anfahrt
                 </button>
               </div>
